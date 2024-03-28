@@ -1,0 +1,55 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+{% if is_student %}
+    {% for i in details %}
+        <p>ID: {{i.id}}</p>
+        <p>Name: {{i.name}}</p>
+        <p>Phone: {{i.phone}}</p>
+        <p>Dob: {{i.dob}}</p>
+        <p>City: {{i.city}}</p>
+        
+    {% endfor %}
+    <p>Course: {{course}}</p>
+{% else %}
+
+<form action="" method='POST'>
+    <!-- when we click any of the submit button we make post request to the dashboard function -->
+
+    {% csrf_token %}
+<p>
+<input type="submit" name="btn" value="Add Student" >
+<input type="submit" name="btn" value="Edit Student" >
+</p>
+
+<label for="course">Choose a Course:</label>
+  <select name="course" id="course">
+    <option value="Full Stack">Full Stack</option>
+    <option value="Front End">Front End</option>
+    <option value="Back End">Back End</option>
+    </select>
+
+<input type="submit" name="btn" value="Search Student">
+
+</form>
+<br>
+<br>
+<!-- WE RECIEVE THE DICTIONARY IN STDS VARIALBE WHICK IS LIST OF DICTNARIES SO THATS WHY FIRST WE BREAK INTO LIST AND THEN DICTIONARY TO GET KEY VALUE -->
+
+<!-- THIS LOOP FOR THE LIST -->
+{% for Student in stds %}
+
+    <!-- THIS LOOP FOR THE DICTIONARY -->
+    {% for key, value in Student.items %}
+            <p>
+            {{ key }} : {{ value }}
+            </p>  
+    {% endfor %}
+
+{% endfor %}    
+
+{% endif %}
+{% endblock %}

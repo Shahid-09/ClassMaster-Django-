@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% for student in all %}
+    <table>
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.phone }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.city }}</td>
+            <td>{{ student.dob }}</td>
+            <td><a href="/editstudent/{{ student.id }}">Edit</a></td>
+        </tr>
+    </table>
+{% endfor %}
+
+{% endblock %}

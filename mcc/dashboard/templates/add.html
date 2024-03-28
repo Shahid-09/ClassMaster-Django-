@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<form action="" method='POST'>
+
+    {% csrf_token %}
+
+    <!-- THE BLANK FORM FROM ADD STUDENT FUNCTION IS SHOWN HERE -->
+    <p>
+    {{form.username.label}}
+    {{form.username}}
+    {{form.username.errors}}
+    </p>
+
+    <p>
+    {{form.password1.label}}
+    {{form.password1}}
+    {{form.password1.errors}}
+    </p>
+
+    <p>
+    {{form.password2.label}}
+    {{form.password2}}
+    {{form.password2.errors}}
+    </p>
+
+    <p>
+    {{form.name.label}}
+    {{form.name}}
+    {{form.name.errors}}
+    </p>
+
+    <p>
+    {{form.email.label}}
+    {{form.email}}
+    {{form.email.errors}}
+    </p>
+
+    <p>
+    {{form.phone.label}}
+    {{form.phone}}
+    {{form.phone.errors}}
+    </p>
+
+    <p>
+    {{form.city.label}}
+    {{form.city}}
+    {{form.city.errors}}
+    </p>
+
+    <p>
+    {{form.dob.label}}
+    {{form.dob}}
+    {{form.dob.errors}}
+    </p>
+
+    <p>
+    {{form.course.label}}
+    {{form.course}}
+    {{form.course.errors}}
+    </p>
+
+    <p>
+    {{form.user_type.label}}
+    {{form.user_type}}
+    {{form.user_type.errors}}
+    </p>
+
+
+    <input type="submit" name="btn" value="Add Student" >
+
+</form>
+
+{% endblock %}
+
+
