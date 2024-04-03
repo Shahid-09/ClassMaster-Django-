@@ -2,8 +2,48 @@
 
 {% block content %}
 
-{% for student in all %}
-    <table>
+<style>
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin: 25px auto;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 2px solid #afb1ca;
+    }
+
+    th {
+        background-color: #00faff;
+    }
+
+    td a {
+        text-decoration: none;
+        color: rgb(4, 0, 255);
+    }
+
+    td a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>DOB</th>
+            <th colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in all %}
         <tr>
             <td>{{ student.id }}</td>
             <td>{{ student.name }}</td>
@@ -12,8 +52,10 @@
             <td>{{ student.city }}</td>
             <td>{{ student.dob }}</td>
             <td><a href="/editstudent/{{ student.id }}">Edit</a></td>
+            <td><a href="/delstudent/{{ student.id }}" style="color: red;">Delete</a></td>
         </tr>
-    </table>
-{% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

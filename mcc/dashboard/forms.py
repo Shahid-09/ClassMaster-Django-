@@ -6,8 +6,10 @@ from django.contrib.auth.forms import UserCreationForm
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=150)
     password = forms.CharField(max_length=150, widget=forms.PasswordInput())
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(max_length=200)
 
-class AddStudentForm(UserCreationForm):
+class AddStudentForm(forms.Form):
     name = forms.CharField(max_length=150)
     email = forms.EmailField(max_length=200)
     phone = forms.CharField(max_length=13)

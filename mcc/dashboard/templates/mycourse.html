@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<style>
+    p {
+        margin: 23px 0px 0px 40px;
+        font-size: 18px;
+        color: #890027;
+
+    }
+
+    h1 {
+        margin: 23px 0px 0px 35px;
+        color: #041a2c;
+        font-size: 33px;
+    }
+</style>
+
+{% if is_student %}
+{% for i in details %}
+<h1> Hii, {{i.name}} here your's course details</h1>
+<p>ID: {{i.id}}</p>
+<p>Name: {{i.name}}</p>
+<p>Phone: {{i.phone}}</p>
+<p>Dob: {{i.dob}}</p>
+<p>City: {{i.city}}</p>
+{% endfor %}
+<p>Course: {{course}}</p>
+
+{% endif %}
+
+{% endblock %}

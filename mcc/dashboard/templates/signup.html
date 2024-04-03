@@ -51,10 +51,28 @@
 <form action="" method="POST">
     {% csrf_token %}
     
-    {{ form.as_p }}
-
+        <!-- Username Field -->
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+        <span class="error-message">{{ form.username.errors }}</span>
+    
+        <!-- Password Field -->
+        <label for="id_password1">Password:</label>
+        {{ form.password1 }}
+        <span class="error-message">{{ form.password1.errors }}</span>
+    
+        <!-- Confirm Password Field -->
+        <label for="id_password2">Confirm Password:</label>
+        {{ form.password2 }}
+        <span class="error-message">{{ form.password2.errors }}</span>
+    
+        <!-- Email Field -->
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        <span class="error-message">{{ form.email.errors }}</span>
+    
     <!-- Update Button -->
-    <input type="submit" name="btn" value="Update">
+    <input type="submit" name="btn" value="SignUP">
 </form>
 
 {% endblock %}

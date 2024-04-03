@@ -2,54 +2,141 @@
 
 {% block content %}
 
-<h1>Dashboard</h1>
+<style>
+    .container {
+        display: flex;
+        margin: 10px;
+    }
 
-{% if is_student %}
-    {% for i in details %}
-        <p>ID: {{i.id}}</p>
-        <p>Name: {{i.name}}</p>
-        <p>Phone: {{i.phone}}</p>
-        <p>Dob: {{i.dob}}</p>
-        <p>City: {{i.city}}</p>
-        
-    {% endfor %}
-    <p>Course: {{course}}</p>
-{% else %}
+    .sidebar {
+        width: 200px;
+        background-color: #fad4d4;
+        padding: 20px;
+        margin-top: 0px;
+        border-radius: 10px;
+    }
 
-<form action="" method='POST'>
-    <!-- when we click any of the submit button we make post request to the dashboard function -->
+    .main-content {
+        flex: 1;
+        padding: 20px;
+    }
 
-    {% csrf_token %}
-<p>
-<input type="submit" name="btn" value="Add Student" >
-<input type="submit" name="btn" value="Edit Student" >
-</p>
+    .middle-content {
+        margin-bottom: 20px;
+    }
 
-<label for="course">Choose a Course:</label>
-  <select name="course" id="course">
-    <option value="Full Stack">Full Stack</option>
-    <option value="Front End">Front End</option>
-    <option value="Back End">Back End</option>
-    </select>
+    .student-details {
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 15px;
+    }
 
-<input type="submit" name="btn" value="Search Student">
+    .student-details table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-</form>
-<br>
-<br>
-<!-- WE RECIEVE THE DICTIONARY IN STDS VARIALBE WHICK IS LIST OF DICTNARIES SO THATS WHY FIRST WE BREAK INTO LIST AND THEN DICTIONARY TO GET KEY VALUE -->
+    .student-details th,
+    .student-details td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
 
-<!-- THIS LOOP FOR THE LIST -->
-{% for Student in stds %}
+    .student-details th {
+        background-color: #f2f2f2;
+    }
 
-    <!-- THIS LOOP FOR THE DICTIONARY -->
-    {% for key, value in Student.items %}
-            <p>
-            {{ key }} : {{ value }}
-            </p>  
-    {% endfor %}
+    input {
+        margin: 10px;
+        padding: 5px;
+        border-radius: 5px;
+    }
 
-{% endfor %}    
+    h1 {
+        color: #041a2c;
+        margin-left: 20px;
+    }
 
-{% endif %}
+    #para {
+        color: #380bb1;
+        font-size: 20px;
+        margin-left: 20px;
+        margin-bottom: 25px;
+    }
+
+</style>
+
+<div class="student-details">
+    {% if is_student %}
+        <h1>Welcome to Coding Club</h1>
+        <p id="para">Hii Student, To check yours course details click on the My Course Icon !</p>
+    <div class="container">
+        <div class="sidebar">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <h2>Dashboard</h2>
+                <p>
+                    <input type="submit" name="btn" value="My Course">
+                </p>
+            </form>
+        </div>
+    </div>
+    {% else %}
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <p>
+                    <input type="submit" name="btn" value="Add Student">
+                    <input type="submit" name="btn" value="Edit Student">
+                </p>
+            </form>
+        </div>
+        <div class="main-content">
+            <div class="middle-content">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <label for="course">Choose a Course:</label>
+
+                    <select name="course" id="course">
+                        <option disabled selected value>-----------</option>
+                        <option value="Full Stack">Full Stack</option>
+                        <option value="Front End">Front End</option>
+                        <option value="Back End">Back End</option>
+                    </select>
+                    <input type="submit" name="btn" value="Search Student">
+                </form>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>DOB</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in stds %}
+                    <tr>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.phone }}</td>
+                        <td>{{ student.dob }}</td>
+                        <td>{{ student.city }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
